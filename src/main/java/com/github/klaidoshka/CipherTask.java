@@ -13,6 +13,9 @@ import com.github.klaidoshka.solution.SymmetricBlockEncryptSolution;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+/**
+ * Main class of the application.
+ */
 public final class CipherTask {
 
   /*

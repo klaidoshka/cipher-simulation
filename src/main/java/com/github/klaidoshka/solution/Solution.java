@@ -1,5 +1,8 @@
 package com.github.klaidoshka.solution;
 
+/**
+ * Interface for the solution of some task.
+ */
 public interface Solution {
 
   /**

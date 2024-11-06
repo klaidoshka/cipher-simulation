@@ -11,7 +11,14 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 /**
+ * Asymmetric solution to decrypt a ciphertext.
  *
+ * <li>
+ * It uses the RSA algorithm to decrypt a ciphertext.
+ * </li>
+ * <li>
+ * Then it encrypts and decrypts the decrypted message again.
+ * </li>
  */
 public final class AsymmetricSolution implements Solution {
 
