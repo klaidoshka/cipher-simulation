@@ -79,8 +79,8 @@ public final class SymmetricBlockDecryptSolution implements Solution {
     LOGGER.info("• Transformation: " + CIPHER_TRANSFORMATION);
     LOGGER.info("• Key: " + toHex(KEY));
     LOGGER.info("• IV: " + toHex(INITIALIZATION_VECTOR));
-    LOGGER.info("Decrypting, encrypting and decrypting again...");
-
+    LOGGER.info("Decrypting and encrypting again...");
+  
     cipher.init(Cipher.DECRYPT_MODE, key, iv);
 
     var decrypted = cipher.doFinal(CIPHERTEXT);

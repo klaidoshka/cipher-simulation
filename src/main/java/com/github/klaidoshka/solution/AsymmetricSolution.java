@@ -85,7 +85,7 @@ public final class AsymmetricSolution implements Solution {
 
     cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
-    var decrypted = cipher.doFinal(CIPHERTEXT, 0, CIPHERTEXT.length);
+    var decrypted = cipher.doFinal(CIPHERTEXT);
 
     LOGGER.info("• Transformation: " + CIPHER_TRANSFORMATION);
     LOGGER.info("• Private key: " + toHex(privateKey.getEncoded()));
@@ -104,5 +104,18 @@ public final class AsymmetricSolution implements Solution {
 
     LOGGER.info("• Ciphertext: " + toHex(encrypted));
     LOGGER.info("  Decrypted: " + toHex(decrypted));
+    LOGGER.info("Modifying the ciphertext to decrypt...");
+
+    CIPHERTEXT[0] ^= 0x01;
+
+    try {
+      decrypted = cipher.doFinal(CIPHERTEXT);
+
+      LOGGER.info("• Ciphertext: " + toHex(CIPHERTEXT));
+      LOGGER.info("  Decrypted: " + toHex(decrypted));
+    } catch (Exception e) {
+      LOGGER.info("• Ciphertext: " + toHex(CIPHERTEXT));
+      LOGGER.info("  Decryption failed: " + e.getMessage());
+    }
   }
 }

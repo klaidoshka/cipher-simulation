@@ -71,7 +71,7 @@ public final class HashSolution implements Solution {
       LOGGER.info("    • Hashes are equal: " + equal);
 
       if (!equal) {
-        return;
+        continue;
       }
 
       var textModified = text.clone();
