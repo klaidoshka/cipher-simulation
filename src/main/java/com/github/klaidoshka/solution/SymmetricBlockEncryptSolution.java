@@ -110,12 +110,20 @@ public final class SymmetricBlockEncryptSolution implements Solution {
       var inputShortened = Arrays.copyOfRange(
           INPUT,
           0,
-          INPUT.length - 1
+          INPUT.length - 16 // If not a multiple of 16, exception is thrown
       );
 
       cipher.init(Cipher.ENCRYPT_MODE, key);
 
-      cipher.doFinal(inputShortened);
+      var encryptedShortened = cipher.doFinal(inputShortened);
+
+      cipher.init(Cipher.DECRYPT_MODE, key);
+
+      var decryptedShortened = cipher.doFinal(encryptedShortened);
+
+      LOGGER.info("• Text: " + toHex(inputShortened));
+      LOGGER.info("  Ciphertext: " + toHex(encryptedShortened));
+      LOGGER.info("  Text (2): " + toHex(decryptedShortened));
     } catch (Exception e) {
       LOGGER.severe("• Exception thrown when encrypting with shortened input: " + e.getMessage());
     }
